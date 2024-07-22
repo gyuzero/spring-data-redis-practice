@@ -1,5 +1,6 @@
 package com.gyuzero.springdataredispractice.config;
 
+import io.lettuce.core.ReadFrom;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -20,9 +21,7 @@ public class AppConfig {
     public LettuceConnectionFactory redisConnectionFactory() {
 
         LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
-//                .useSsl().and()
-                .commandTimeout(Duration.ofSeconds(2))
-                .shutdownTimeout(Duration.ZERO)
+                .readFrom(ReadFrom.REPLICA_PREFERRED)
                 .build();
 
         return new LettuceConnectionFactory(new RedisStandaloneConfiguration("localhost", 6379), clientConfig);
