@@ -13,6 +13,9 @@ import java.time.Duration;
 @Configuration
 public class AppConfig {
 
+    /**
+     * Lettuce
+     */
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
 
